@@ -4,6 +4,7 @@ const resetGameBtn = document.getElementById('reset-game');
 const currentScoreSpan = document.getElementById('current-score');
 const hightScoreSpan = document.getElementById('high-score');
 
+
 const height = 10;
 const width = 10;
 const speed = 200;
@@ -17,9 +18,12 @@ let direction = 'up';
 let foodY, foodX, foodIndex;
 let score = 0;
 
-let highScore = 
+let highScore = localStorage.getItem('snakeHighScore') ?? 0;
 
-hightScoreSpan = 
+hightScoreSpan.innerText = highScore;
+
+
+
 
 
 generateFood();
@@ -151,5 +155,9 @@ function stopGame() {
     clearInterval(intervalId);
     messageDiv.innerText = 'Game Over!';
     resetGameBtn.classList.remove('hidden');
+
+    if (score < highScore){
+        localStorage.setItem('snakeHighscore', score);
+    }
 }
 
