@@ -19,7 +19,6 @@ let foodY, foodX, foodIndex;
 let score = 0;
 
 let highScore = localStorage.getItem('snakeHighScore') ?? 0;
-
 hightScoreSpan.innerText = highScore;
 
 
@@ -126,6 +125,11 @@ function updateSnake () {
     if ( y == foodY && x == foodX ) {
         score++;
         currentScoreSpan.innerText = score;
+
+        if ( score % accelertion == 0 ) {
+            speed -= 5
+        }
+
         generateFood();
     } else {
         snake.pop();
